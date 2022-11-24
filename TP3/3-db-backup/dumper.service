@@ -1,0 +1,11 @@
+[Unit]
+Description= Start tp3_db_dump.sh to dump the database nextcloud
+
+[Service]
+User=dumper
+Type=oneshot
+WorkingDirectory=/srv/
+ExecStart=/usr/bin/bash tp3_db_dump.sh
+
+[Install]
+WantedBy=multi-user.target

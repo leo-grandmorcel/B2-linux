@@ -1,0 +1,11 @@
+[Unit]
+Description= Start tp3_backup.sh to archive config, themes and data folders
+
+[Service]
+User=backup
+Type=oneshot
+WorkingDirectory=/srv/
+ExecStart=/usr/bin/bash tp3_backup.sh
+
+[Install]
+WantedBy=multi-user.target
