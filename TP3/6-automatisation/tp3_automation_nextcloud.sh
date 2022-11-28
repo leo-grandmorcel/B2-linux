@@ -11,31 +11,12 @@ usage(){
         -w name       Name of your web server."
 }
 
-
 namer(){
         hostname "${newname}"
         lastname=$(cat /etc/hostname)
         sed -i "s/${lastname}/${newname}/g" /etc/hostname
         sed -i "s/localhost/${newname}/g" /etc/hosts
         echo "Hostname changed from ${lastname} to ${newname}"
-}
-
-isInternet(){
-    ping -q -c 4 1.1.1.1 &> /dev/null
-    if [ ${?} -ne 0 ]
-    then
-        echo "No internet connexion."
-        exit 1
-    fi
-}
-
-isResolutionDns(){
-    ping -q -c 4 google.com &> /dev/null
-    if [ ${?} -ne 0 ]
-    then
-        echo "No resolution name."
-        exit 1
-    fi
 }
 
 apache(){
@@ -65,12 +46,14 @@ nextcloud(){
 }
 
 
-if [ "${EUID}" -ne 0 ]
+if [[ "${EUID}" -ne 0 ]]
 then 
     echo "Please run as root."
     exit 1
 fi
+
 webname=$(cat /etc/hostname)
+
 while getopts ":hn:w:" option
 do
     case "${option}" in
@@ -89,18 +72,33 @@ do
             echo "Option ${option} not recognized." 
             usage
             exit 1
-            ;;
+        ;;
     esac
 done
 
-isInternet
-if [ ${?} -eq 1 ]
-then 
-    echo "Make sure you have internet and restart the command."
+if ! ping -c 1 1.1.1.1
+then
+    echo "No internet connexion."
     exit 1
 fi
 
-isResolutionDns
+if ! ping -c 1 google.com
+then
+    echo "No resolution name."
+    exit 1
+fi
+
+if [[ ! -e .nextcloud.conf.skeleton ]]
+then
+    echo "You need to copy <.nextcloud.conf.skeleton> from repo."
+    exit 1
+fi
+
+if [[ ! -r .nextcloud.conf.skeleton ]]
+then
+    echo "File <.nextcloud.conf.skeleton> need to be readable."
+    exit 1
+fi
 
 echo "Starting installation..."
 dnf update -y
