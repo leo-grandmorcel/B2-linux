@@ -1,0 +1,8 @@
+version: "1.0"
+
+services:
+  forum:
+    image: forum
+    restart: always
+    ports:
+      - "80:8080"
