@@ -21,6 +21,7 @@ sudo usermod -aG docker $(whoami)
 ```
 
 Afin de faciliter l'installation des modules, veillez à copier via une commande `scp` les dossiers ci-dessous sur les machines respectivent.
+Chaque module possède ses instructions d'installation.
 
 Machine Database :
 
@@ -34,10 +35,3 @@ Machines Proxies :
 
 - [proxy](./proxy/)
 - [keepalived](./keepalived/)
-
-Suivez ensuite les instructions d'installation de chaque module.
-
-- [db](./db/README.md)
-- [forum](./forum/README.md)
-- [proxy](./proxy/README.md)
-- [keepalived](./keepalived/README.md)
