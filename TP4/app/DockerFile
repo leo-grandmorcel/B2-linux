@@ -24,6 +24,6 @@ RUN /usr/local/go/bin/go build -o admin setupadmin/setupadmin.go
 
 RUN rm -r Forum_db.png *.go README.MD go.mod go.sum server setupadmin test 
 
-CMD [ "./forum" ]
-
 EXPOSE 8080/tcp
+
+CMD [ "./forum" ]

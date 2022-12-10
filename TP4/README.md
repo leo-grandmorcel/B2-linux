@@ -22,7 +22,7 @@
 Installed:
   yum-utils-4.0.24-4.el9_0.noarch
 Complete!
-[leo@docker1 ~]$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+[leo@docker1 ~]$ sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 Adding repo from: https://download.docker.com/linux/centos/docker-ce.repo
 [leo@docker1 ~]$ sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 [...]
