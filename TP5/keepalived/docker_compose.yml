@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  keepalived:
+    image: keepalived
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    network_mode: "host"

@@ -1,0 +1,14 @@
+vrrp_instance VI_1 {
+  state <STATE>
+  interface <INTERFACE>
+  virtual_router_id <ROUTER_ID>
+  priority <PRIORITY>
+  advert_int 1
+  authentication {
+    auth_type PASS
+    auth_pass <PASSWORD>
+  }
+  virtual_ipaddress {
+    <VIRTUAL_IP>
+  }
+}
