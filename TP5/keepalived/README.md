@@ -7,20 +7,13 @@ Il va de soi que Keepalived doit être installé sur les deux proxies.
 Les variables à modifier sur le [DockerFile](./Dockerfile) sont :
 
 ```
-ENV STATE="MASTER"
-ENV INTERFACE="enp0s8"
-ENV ROUTER_ID="51"
-ENV PRIORITY="100"
-ENV PASSWORD="PASSWORD"
-ENV VIRTUAL_IP="10.102.1.100\/24"
+ENV STATE="MASTER"                 # Spécifier l'état (MASTER/BACKUP)
+ENV INTERFACE="enp0s8"             # Spécifier l'interface réseau sur laquelle l'instance doit s'exécuter
+ENV ROUTER_ID="51"                 # Spécifier à quel identifiant de routeur VRRP l'instance appartient
+ENV PRIORITY="100"                 # Spécifier la priorité de l'instance dans le routeur VRRP
+ENV PASSWORD="PASSWORD"            # Spécifiez le mot de passe à utiliser
+ENV VIRTUAL_IP="10.102.1.100\/24"  # Spécifiez l'ip Virtuel
 ```
-
-State : Spécifier l'état (MASTER/BACKUP)
-Interface : Spécifier l'interface réseau sur laquelle l'instance doit s'exécuter
-Router_Id : Spécifier à quel identifiant de routeur VRRP l'instance appartient
-Priority : Spécifier la priorité de l'instance dans le routeur VRRP
-Password : Spécifiez le mot de passe à utiliser
-Virtual_IP : Spécifiez l'ip Virtuel
 
 Une fois les variables modifiées, il vous faudra construire l'image et lancer le service via :
 
